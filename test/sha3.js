@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var sha3 = require('../lib/utils/sha3');
-var web3 = require('../index');
+var web4 = require('../index');
 
 describe('lib/utils/sha3', function () {
     var test = function (v, e, o) {

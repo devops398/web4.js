@@ -1,5 +1,5 @@
 var assert = require('assert');
-var formatters = require('../lib/web3/formatters.js');
+var formatters = require('../lib/web4/formatters.js');
 
 describe('formatters', function () {
     describe('outputPostFormatter', function () {

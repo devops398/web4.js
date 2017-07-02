@@ -1,5 +1,5 @@
 var chai = require('chai');
-var Iban = require('../lib/web3/iban.js');
+var Iban = require('../lib/web4/iban.js');
 var assert = chai.assert;
 
 var tests = [
@@ -23,7 +23,7 @@ var tests = [
     { obj: 'XE1222Q908LN1QBBU6XUQSO1OHWJIOS46OO', is: true}
 ];
 
-describe('lib/web3/iban', function () {
+describe('lib/web4/iban', function () {
     describe('isValid', function () {
         tests.forEach(function (test) {
             it('shoud test if value ' + test.obj + ' is iban: ' + test.is, function () {

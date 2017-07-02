@@ -5,14 +5,14 @@ var FakeIpcRequest = require('./helpers/FakeIpcRequest')
 var net = new FakeIpcRequest();
 
 SandboxedModule.registerBuiltInSourceTransformer('istanbul');
-var IpcProvider = SandboxedModule.require('../lib/web3/ipcprovider', {
+var IpcProvider = SandboxedModule.require('../lib/web4/ipcprovider', {
     requires: {
         'bignumber.js': require('bignumber.js'), 
     },
     singleOnly: true
 });
 
-describe('lib/web3/ipcprovider', function () {
+describe('lib/web4/ipcprovider', function () {
     describe('send', function () {
         it('should send basic request', function () {
             var provider = new IpcProvider('', net);

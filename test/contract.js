@@ -4,7 +4,7 @@ var Web3 = require('../index');
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var FakeHttpProvider2 = require('./helpers/FakeHttpProvider2');
 var utils = require('../lib/utils/utils');
-var errors = require('../lib/web3/errors');
+var errors = require('../lib/web4/errors');
 var BigNumber = require('bignumber.js');
 var sha3 = require('../lib/utils/sha3');
 
@@ -62,7 +62,7 @@ describe('contract', function () {
     describe('event', function () {
         it('should create event filter', function (done) {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'Changed(address,uint256,uint256,uint256)';
             var step = 0;
             provider.injectValidation(function (payload) {
@@ -114,7 +114,7 @@ describe('contract', function () {
                 }
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var res = 0;
             var event = contract.Changed({from: address, amount: 10});
@@ -133,7 +133,7 @@ describe('contract', function () {
 
         it('should create event filter and watch immediately', function (done) {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'Changed(address,uint256,uint256,uint256)';
             var step = 0;
             provider.injectValidation(function (payload) {
@@ -185,7 +185,7 @@ describe('contract', function () {
                 }
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var res = 0;
             var event = contract.Changed({from: address}, function(err, result) {
@@ -203,7 +203,7 @@ describe('contract', function () {
 
         it('should create all event filter', function (done) {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'Changed(address,uint256,uint256,uint256)';
             var step = 0;
             provider.injectValidation(function (payload) {
@@ -251,7 +251,7 @@ describe('contract', function () {
                 }
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var res = 0;
             var event = contract.allEvents();
@@ -270,7 +270,7 @@ describe('contract', function () {
 
         it('should call constant function', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             provider.injectResult('0x0000000000000000000000000000000000000000000000000000000000000032');
             var signature = 'balance(address)'
             var address = '0x1234567890123456789012345678901234567891';
@@ -283,7 +283,7 @@ describe('contract', function () {
                 }, 'latest']);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var r = contract.balance(address);
             assert.deepEqual(new BigNumber(0x32), r);
@@ -291,7 +291,7 @@ describe('contract', function () {
 
         it('should call constant function with default block', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             provider.injectResult('0x0000000000000000000000000000000000000000000000000000000000000032');
             var signature = 'balance(address)'
             var address = '0x1234567890123456789012345678901234567891';
@@ -304,7 +304,7 @@ describe('contract', function () {
                 }, '0xb']);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var r = contract.balance(address, 11);
             assert.deepEqual(new BigNumber(0x32), r);
@@ -312,7 +312,7 @@ describe('contract', function () {
 
         it('should sendTransaction to contract function', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'send(address,uint256)';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectValidation(function (payload) {
@@ -326,14 +326,14 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.send(address, 17, {from: address});
         });
 
         it('should make a call with optional params', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             provider.injectResult('0x0000000000000000000000000000000000000000000000000000000000000032');
             var signature = 'balance(address)';
             var address = '0x1234567890123456789012345678901234567891';
@@ -347,7 +347,7 @@ describe('contract', function () {
                 }, 'latest']);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var r = contract.balance(address, {from: address, gas: 50000});
             assert.deepEqual(new BigNumber(0x32), r);
@@ -356,7 +356,7 @@ describe('contract', function () {
 
         it('should throw if called with optional params without all args', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             provider.injectResult('0x0000000000000000000000000000000000000000000000000000000000000032');
             var signature = 'balance(address)';
             var address = '0x1234567890123456789012345678901234567891';
@@ -370,7 +370,7 @@ describe('contract', function () {
                 }, 'latest']);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var test = function() {
               var r = contract.balance({from: address, gas: 50000});
@@ -381,7 +381,7 @@ describe('contract', function () {
 
         it('should explicitly make a call with optional params', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             provider.injectResult('0x0000000000000000000000000000000000000000000000000000000000000032');
             var signature = 'balance(address)';
             var address = '0x1234567890123456789012345678901234567891';
@@ -395,7 +395,7 @@ describe('contract', function () {
                 }, 'latest']);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var r = contract.balance.call(address, {from: address, gas: 50000});
             assert.deepEqual(new BigNumber(0x32), r);
@@ -404,7 +404,7 @@ describe('contract', function () {
 
         it('should explicitly make a call with optional params and defaultBlock', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             provider.injectResult('0x0000000000000000000000000000000000000000000000000000000000000032');
             var signature = 'balance(address)';
             var address = '0x1234567890123456789012345678901234567891';
@@ -418,7 +418,7 @@ describe('contract', function () {
                 }, '0xb']);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var r = contract.balance.call(address, {from: address, gas: 50000}, 11);
             assert.deepEqual(new BigNumber(0x32), r);
@@ -427,7 +427,7 @@ describe('contract', function () {
 
         it('it should throw if sendTransaction with optional params without all args', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'send(address,uint256)';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectValidation(function (payload) {
@@ -444,7 +444,7 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             var test = function() {
               contract.send(address, {from: address, gas: 50000, gasPrice: 3000, value: 10000});
@@ -456,7 +456,7 @@ describe('contract', function () {
 
         it('should sendTransaction with optional params', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'send(address,uint256)';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectValidation(function (payload) {
@@ -473,14 +473,14 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.send(address, 17, {from: address, gas: 50000, gasPrice: 3000, value: 10000});
         });
 
         it('should sendTransaction with bigNum param and optional params', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'send(address,uint256)';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectValidation(function (payload) {
@@ -497,14 +497,14 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.send(address, new BigNumber(17), {from: address, gas: 50000, gasPrice: 3000, value: 10000});
         });
 
         it('should explicitly sendTransaction with optional params', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'send(address,uint256)';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectValidation(function (payload) {
@@ -521,14 +521,14 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.send.sendTransaction(address, 17, {from: address, gas: 50000, gasPrice: 3000, value: 10000});
         });
 
         it('should explicitly sendTransaction with optional params and call callback without error', function (done) {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var address = '0x1234567890123456789012345678901234567891';
             var signature = 'send(address,uint256)';
             provider.injectValidation(function (payload) {
@@ -545,7 +545,7 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.send.sendTransaction(address, 17, {from: address, gas: 50000, gasPrice: 3000, value: 10000}, function (err) {
                 assert.equal(err, null);
@@ -555,7 +555,7 @@ describe('contract', function () {
 
         it('should explicitly estimateGas with optional params', function () {
             var provider = new FakeHttpProvider();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'send(address,uint256)';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectValidation(function (payload) {
@@ -572,14 +572,14 @@ describe('contract', function () {
                 }]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.send.estimateGas(address, 17, {from: address, gas: 50000, gasPrice: 3000, value: 10000});
         });
 
         it('should call testArr method and properly parse result', function () {
             var provider = new FakeHttpProvider2();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'testArr(int[])';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectResultList([{
@@ -599,7 +599,7 @@ describe('contract', function () {
                     ]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
             var result = contract.testArr([3]);
 
             assert.deepEqual(new BigNumber(5), result);
@@ -607,7 +607,7 @@ describe('contract', function () {
 
         it('should call testArr method, properly parse result and return the result async', function (done) {
             var provider = new FakeHttpProvider2();
-            var web3 = new Web3(provider);
+            var web4 = new Web3(provider);
             var signature = 'testArr(int[])';
             var address = '0x1234567890123456789012345678901234567891';
             provider.injectResultList([{
@@ -626,7 +626,7 @@ describe('contract', function () {
                 ]);
             });
 
-            var contract = web3.eth.contract(desc).at(address);
+            var contract = web4.eth.contract(desc).at(address);
 
             contract.testArr([3], function (err, result) {
                 assert.deepEqual(new BigNumber(5), result);

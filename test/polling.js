@@ -1,7 +1,7 @@
 var chai = require('chai');
 var assert = chai.assert;
 var Web3 = require('../index');
-var web3 = new Web3();
+var web4 = new Web3();
 var FakeHttpProvider = require('./helpers/FakeHttpProvider');
 var utils = require('../lib/utils/utils');
 
@@ -34,14 +34,14 @@ var tests = [{
 
 var testPolling = function (tests) {
     
-    describe('web3.eth.filter.polling', function () {
+    describe('web4.eth.filter.polling', function () {
         tests.forEach(function (test, index) {
             it('should create && successfully poll filter', function (done) {
 
                 // given
                 var provider = new FakeHttpProvider(); 
-                web3.setProvider(provider);
-                web3.reset();
+                web4.setProvider(provider);
+                web4.reset();
                 provider.injectResult(test.firstResult);
                 var step = 0;
                 provider.injectValidation(function (payload) {
@@ -61,7 +61,7 @@ var testPolling = function (tests) {
                 });
 
                 // when
-                var filter = web3[test.protocol].filter.apply(web3[test.protocol], test.args);
+                var filter = web4[test.protocol].filter.apply(web4[test.protocol], test.args);
                 provider.injectBatchResults([test.secondResult]);
                 filter.watch(function (err, result) {
                     if (test.err) {
@@ -80,8 +80,8 @@ var testPolling = function (tests) {
 
                 // given
                 var provider = new FakeHttpProvider(); 
-                web3.setProvider(provider);
-                web3.reset();
+                web4.setProvider(provider);
+                web4.reset();
                 provider.injectResult(test.firstResult);
                 var step = 0;
                 provider.injectValidation(function (payload) {
@@ -115,7 +115,7 @@ var testPolling = function (tests) {
                 });
 
                 // when
-                var filter = web3[test.protocol].filter.apply(web3[test.protocol], test.args);
+                var filter = web4[test.protocol].filter.apply(web4[test.protocol], test.args);
                 provider.injectBatchResults([test.secondResult]);
             });
         }); 

@@ -1,8 +1,8 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Method = require('../lib/web3/method');
+var Method = require('../lib/web4/method');
 
-describe('lib/web3/method', function () {
+describe('lib/web4/method', function () {
     describe('formatOutput', function () {
         it('should format plain output', function () {
             

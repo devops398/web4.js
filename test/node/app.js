@@ -1,5 +1,5 @@
-var web3 = require('web3');
+var web4 = require('web4');
 
-console.log(web3.version.api);
+console.log(web4.version.api);
 
 

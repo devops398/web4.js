@@ -1,6 +1,6 @@
 var chai = require('chai');
 var assert = chai.assert;
-var formatters = require('../lib/web3/formatters');
+var formatters = require('../lib/web4/formatters');
 
 var tests = [
     { value: 'latest', expected: 'latest' },
@@ -10,7 +10,7 @@ var tests = [
     { value: '0x1', expected: '0x1' }
 ];
 
-describe('lib/web3/formatters', function () {
+describe('lib/web4/formatters', function () {
     describe('inputDefaultBlockNumberFormatter', function () {
         tests.forEach(function (test) {
             it('should turn ' + test.value + ' to ' + test.expected, function () {

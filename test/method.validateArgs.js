@@ -1,9 +1,9 @@
 var chai = require('chai');
 var assert = chai.assert;
-var Method = require('../lib/web3/method');
-var errors = require('../lib/web3/errors');
+var Method = require('../lib/web4/method');
+var errors = require('../lib/web4/errors');
 
-describe('lib/web3/method', function () {
+describe('lib/web4/method', function () {
     describe('validateArgs', function () {
         it('should pass', function () {
             

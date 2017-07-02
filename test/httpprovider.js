@@ -3,7 +3,7 @@ var assert = chai.assert;
 var SandboxedModule = require('sandboxed-module');
 
 SandboxedModule.registerBuiltInSourceTransformer('istanbul');
-var HttpProvider = SandboxedModule.require('../lib/web3/httpprovider', {
+var HttpProvider = SandboxedModule.require('../lib/web4/httpprovider', {
     requires: {
         'xhr2': require('./helpers/FakeXHR2'),
         'xmlhttprequest': require('./helpers/FakeXMLHttpRequest')
@@ -11,7 +11,7 @@ var HttpProvider = SandboxedModule.require('../lib/web3/httpprovider', {
     singleOnly: true
 });
 
-describe('lib/web3/httpprovider', function () {
+describe('lib/web4/httpprovider', function () {
     describe('send', function () {
         it('should send basic request', function () {
             var provider = new HttpProvider();
