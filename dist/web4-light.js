@@ -4910,7 +4910,7 @@ Jsonrpc.isValidResponse = function (response) {
     function validateSingleMessage(message){
       return !!message &&
         !message.error &&
-        message.jsonrpc === '2.0' &&
+//        message.jsonrpc === '2.0' &&
         typeof message.id === 'number' &&
         message.result !== undefined; // only undefined is not valid json object
     }
@@ -5729,7 +5729,7 @@ var uncleCountCall = function (args) {
   return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'qtum_getUncleCountByBlockHash' : 'qtum_getUncleCountByBlockNumber';
 };
 
-function Eth(web4) {
+function Qtum(web4) {
   this._requestManager = web4._requestManager;
 
   var self = this;
@@ -5749,7 +5749,7 @@ function Eth(web4) {
   this.sendIBANTransaction = transfer.bind(null, this);
 }
 
-Object.defineProperty(Eth.prototype, 'defaultBlock', {
+Object.defineProperty(Qtum.prototype, 'defaultBlock', {
   get: function () {
     return c.defaultBlock;
   },
@@ -5759,7 +5759,7 @@ Object.defineProperty(Eth.prototype, 'defaultBlock', {
   }
 });
 
-Object.defineProperty(Eth.prototype, 'defaultAccount', {
+Object.defineProperty(Qtum.prototype, 'defaultAccount', {
   get: function () {
     return c.defaultAccount;
   },
@@ -5772,10 +5772,8 @@ Object.defineProperty(Eth.prototype, 'defaultAccount', {
 var methods = function () {
   var getBalance = new Method({
     name: 'getBalance',
-    call: 'qtum_getBalance',
-    params: 2,
-    inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultBlockNumberFormatter],
-    outputFormatter: formatters.outputBigNumberFormatter
+    call: 'accountinfo',
+    params: 0,
   });
 
   var getStorageAt = new Method({
@@ -5875,11 +5873,10 @@ var methods = function () {
     inputFormatter: [formatters.inputTransactionFormatter]
   });
 
-  var signTransaction = new Method({
-    name: 'signTransaction',
-    call: 'qtum_signTransaction',
-    params: 1,
-    inputFormatter: [formatters.inputTransactionFormatter]
+  var sendToContract = new Method({
+    name: 'sendToContract',
+    call: 'sendtocontract',
+    params: 1
   });
 
   var sign = new Method({
@@ -5889,11 +5886,10 @@ var methods = function () {
     inputFormatter: [formatters.inputAddressFormatter, null]
   });
 
-  var call = new Method({
-    name: 'call',
-    call: 'qtum_call',
-    params: 2,
-    inputFormatter: [formatters.inputCallFormatter, formatters.inputDefaultBlockNumberFormatter]
+  var callContract = new Method({
+    name: 'callContract',
+    call: 'callcontract',
+    params: 2
   });
 
   var estimateGas = new Method({
@@ -5947,11 +5943,10 @@ var methods = function () {
     getTransactionFromBlock,
     getTransactionReceipt,
     getTransactionCount,
-    call,
+    callContract,
     estimateGas,
     sendRawTransaction,
-    signTransaction,
-    sendTransaction,
+    sendToContract,
     sign,
     compileSolidity,
     compileLLL,
@@ -6003,28 +5998,28 @@ var properties = function () {
   ];
 };
 
-Eth.prototype.contract = function (abi) {
+Qtum.prototype.contract = function (abi) {
   var factory = new Contract(this, abi);
   return factory;
 };
 
-Eth.prototype.filter = function (options, callback, filterCreationErrorCallback) {
+Qtum.prototype.filter = function (options, callback, filterCreationErrorCallback) {
   return new Filter(options, 'qtum', this._requestManager, watches.qtum(), formatters.outputLogFormatter, callback, filterCreationErrorCallback);
 };
 
-Eth.prototype.namereg = function () {
+Qtum.prototype.namereg = function () {
   return this.contract(namereg.global.abi).at(namereg.global.address);
 };
 
-Eth.prototype.icapNamereg = function () {
+Qtum.prototype.icapNamereg = function () {
   return this.contract(namereg.icap.abi).at(namereg.icap.address);
 };
 
-Eth.prototype.isSyncing = function (callback) {
+Qtum.prototype.isSyncing = function (callback) {
   return new IsSyncing(this._requestManager, callback);
 };
 
-module.exports = Eth;
+module.exports = Qtum;
 
 },{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":45,"../property":46,"../syncing":49,"../transfer":50,"./watches":44}],42:[function(require,module,exports){
 /*
