@@ -602,20 +602,20 @@ module.exports = SolidityTypeBytes;
 
 },{"./formatters":9,"./type":14}],7:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file coder.js
@@ -889,20 +889,20 @@ module.exports = SolidityTypeDynamicBytes;
 
 },{"./formatters":9,"./type":14}],9:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file formatters.js
@@ -1177,20 +1177,20 @@ module.exports = SolidityTypeInt;
 
 },{"./formatters":9,"./type":14}],11:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file param.js
@@ -1723,20 +1723,20 @@ if (typeof XMLHttpRequest === 'undefined') {
 
 },{}],18:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file config.js
  * @authors:
@@ -1804,20 +1804,20 @@ module.exports = {
 
 },{"bignumber.js":"bignumber.js"}],19:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file sha3.js
@@ -1844,20 +1844,20 @@ module.exports = function (value, options) {
 
 },{"crypto-js":58,"crypto-js/sha3":79}],20:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file utils.js
@@ -2480,23 +2480,23 @@ module.exports={
 
 },{}],22:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @file web3.js
+ * @file web4.js
  * @authors:
  *   Jeffrey Wilcke <jeff@ethdev.com>
  *   Marek Kotewicz <marek@ethdev.com>
@@ -2506,23 +2506,23 @@ module.exports={
  * @date 2014
  */
 
-var RequestManager = require('./web3/requestmanager');
-var Iban = require('./web3/iban');
-var Eth = require('./web3/methods/eth');
-var DB = require('./web3/methods/db');
-var Shh = require('./web3/methods/shh');
-var Net = require('./web3/methods/net');
-var Personal = require('./web3/methods/personal');
-var Swarm = require('./web3/methods/swarm');
-var Settings = require('./web3/settings');
+var RequestManager = require('./web4/requestmanager');
+var Iban = require('./web4/iban');
+var Eth = require('./web4/methods/eth');
+var DB = require('./web4/methods/db');
+var Shh = require('./web4/methods/shh');
+var Net = require('./web4/methods/net');
+var Personal = require('./web4/methods/personal');
+var Swarm = require('./web4/methods/swarm');
+var Settings = require('./web4/settings');
 var version = require('./version.json');
 var utils = require('./utils/utils');
 var sha3 = require('./utils/sha3');
-var extend = require('./web3/extend');
-var Batch = require('./web3/batch');
-var Property = require('./web3/property');
-var HttpProvider = require('./web3/httpprovider');
-var IpcProvider = require('./web3/ipcprovider');
+var extend = require('./web4/extend');
+var Batch = require('./web4/batch');
+var Property = require('./web4/property');
+var HttpProvider = require('./web4/httpprovider');
+var IpcProvider = require('./web4/ipcprovider');
 var BigNumber = require('bignumber.js');
 
 
@@ -2601,7 +2601,7 @@ var properties = function () {
     return [
         new Property({
             name: 'version.node',
-            getter: 'web3_clientVersion'
+            getter: 'web4_clientVersion'
         }),
         new Property({
             name: 'version.network',
@@ -2632,22 +2632,22 @@ Web3.prototype.createBatch = function () {
 module.exports = Web3;
 
 
-},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web3/batch":24,"./web3/extend":28,"./web3/httpprovider":32,"./web3/iban":33,"./web3/ipcprovider":34,"./web3/methods/db":37,"./web3/methods/eth":38,"./web3/methods/net":39,"./web3/methods/personal":40,"./web3/methods/shh":41,"./web3/methods/swarm":42,"./web3/property":45,"./web3/requestmanager":46,"./web3/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
+},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web4/batch":24,"./web4/extend":28,"./web4/httpprovider":32,"./web4/iban":33,"./web4/ipcprovider":34,"./web4/methods/db":37,"./web4/methods/eth":38,"./web4/methods/net":39,"./web4/methods/personal":40,"./web4/methods/shh":41,"./web4/methods/swarm":42,"./web4/property":45,"./web4/requestmanager":46,"./web4/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file allevents.js
@@ -2724,20 +2724,20 @@ module.exports = AllSolidityEvents;
 
 },{"../utils/sha3":19,"../utils/utils":20,"./event":27,"./filter":29,"./formatters":30,"./methods/watches":43}],24:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file batch.js
@@ -2748,8 +2748,8 @@ module.exports = AllSolidityEvents;
 var Jsonrpc = require('./jsonrpc');
 var errors = require('./errors');
 
-var Batch = function (web3) {
-    this.requestManager = web3._requestManager;
+var Batch = function (web4) {
+    this.requestManager = web4._requestManager;
     this.requests = [];
 };
 
@@ -2792,20 +2792,20 @@ module.exports = Batch;
 
 },{"./errors":26,"./jsonrpc":35}],25:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file contract.js
@@ -3104,20 +3104,20 @@ module.exports = ContractFactory;
 
 },{"../solidity/coder":7,"../utils/utils":20,"./allevents":23,"./event":27,"./function":31}],26:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file errors.js
@@ -3149,20 +3149,20 @@ module.exports = {
 
 },{}],27:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file event.js
@@ -3365,31 +3365,31 @@ var Property = require('./property');
 
 // TODO: refactor, so the input params are not altered.
 // it's necessary to make same 'extension' work with multiple providers
-var extend = function (web3) {
+var extend = function (web4) {
     /* jshint maxcomplexity:5 */
     var ex = function (extension) {
 
         var extendedObject;
         if (extension.property) {
-            if (!web3[extension.property]) {
-                web3[extension.property] = {};
+            if (!web4[extension.property]) {
+                web4[extension.property] = {};
             }
-            extendedObject = web3[extension.property];
+            extendedObject = web4[extension.property];
         } else {
-            extendedObject = web3;
+            extendedObject = web4;
         }
 
         if (extension.methods) {
             extension.methods.forEach(function (method) {
                 method.attachToObject(extendedObject);
-                method.setRequestManager(web3._requestManager);
+                method.setRequestManager(web4._requestManager);
             });
         }
 
         if (extension.properties) {
             extension.properties.forEach(function (property) {
                 property.attachToObject(extendedObject);
-                property.setRequestManager(web3._requestManager);
+                property.setRequestManager(web4._requestManager);
             });
         }
     };
@@ -3409,20 +3409,20 @@ module.exports = extend;
 
 },{"./../utils/utils":20,"./formatters":30,"./method":36,"./property":45}],29:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file filter.js
  * @authors:
@@ -3658,20 +3658,20 @@ module.exports = Filter;
 'use strict'
 
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file formatters.js
@@ -3966,20 +3966,20 @@ module.exports = {
 
 },{"../utils/config":18,"../utils/utils":20,"./iban":33}],31:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file function.js
@@ -4251,20 +4251,20 @@ module.exports = SolidityFunction;
 
 },{"../solidity/coder":7,"../utils/sha3":19,"../utils/utils":20,"./errors":26,"./formatters":30}],32:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file httpprovider.js
  * @authors:
@@ -4407,20 +4407,20 @@ module.exports = HttpProvider;
 
 },{"./errors":26,"xhr2":85,"xmlhttprequest":17}],33:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file iban.js
@@ -4636,20 +4636,20 @@ module.exports = Iban;
 
 },{"bignumber.js":"bignumber.js"}],34:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file ipcprovider.js
  * @authors:
@@ -4845,20 +4845,20 @@ module.exports = IpcProvider;
 
 },{"../utils/utils":20,"./errors":26}],35:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file jsonrpc.js
  * @authors:
@@ -4932,20 +4932,20 @@ module.exports = Jsonrpc;
 
 },{}],36:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file method.js
@@ -5098,20 +5098,20 @@ module.exports = Method;
 
 },{"../utils/utils":20,"./errors":26}],37:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file db.js
  * @authors:
@@ -5121,14 +5121,14 @@ module.exports = Method;
 
 var Method = require('../method');
 
-var DB = function (web3) {
-    this._requestManager = web3._requestManager;
+var DB = function (web4) {
+    this._requestManager = web4._requestManager;
 
     var self = this;
     
     methods().forEach(function(method) { 
         method.attachToObject(self);
-        method.setRequestManager(web3._requestManager);
+        method.setRequestManager(web4._requestManager);
     });
 };
 
@@ -5166,20 +5166,20 @@ module.exports = DB;
 
 },{"../method":36}],38:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file eth.js
@@ -5223,8 +5223,8 @@ var uncleCountCall = function (args) {
     return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'eth_getUncleCountByBlockHash' : 'eth_getUncleCountByBlockNumber';
 };
 
-function Eth(web3) {
-    this._requestManager = web3._requestManager;
+function Eth(web4) {
+    this._requestManager = web4._requestManager;
 
     var self = this;
 
@@ -5522,20 +5522,20 @@ module.exports = Eth;
 
 },{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":44,"../property":45,"../syncing":48,"../transfer":49,"./watches":43}],39:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file eth.js
  * @authors:
@@ -5546,18 +5546,18 @@ module.exports = Eth;
 var utils = require('../../utils/utils');
 var Property = require('../property');
 
-var Net = function (web3) {
-    this._requestManager = web3._requestManager;
+var Net = function (web4) {
+    this._requestManager = web4._requestManager;
 
     var self = this;
 
     properties().forEach(function(p) { 
         p.attachToObject(self);
-        p.setRequestManager(web3._requestManager);
+        p.setRequestManager(web4._requestManager);
     });
 };
 
-/// @returns an array of objects describing web3.eth api properties
+/// @returns an array of objects describing web4.eth api properties
 var properties = function () {
     return [
         new Property({
@@ -5576,20 +5576,20 @@ module.exports = Net;
 
 },{"../../utils/utils":20,"../property":45}],40:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file eth.js
@@ -5604,8 +5604,8 @@ var Method = require('../method');
 var Property = require('../property');
 var formatters = require('../formatters');
 
-function Personal(web3) {
-    this._requestManager = web3._requestManager;
+function Personal(web4) {
+    this._requestManager = web4._requestManager;
 
     var self = this;
 
@@ -5693,20 +5693,20 @@ module.exports = Personal;
 
 },{"../formatters":30,"../method":36,"../property":45}],41:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file shh.js
  * @authors:
@@ -5719,8 +5719,8 @@ var Method = require('../method');
 var Filter = require('../filter');
 var watches = require('./watches');
 
-var Shh = function (web3) {
-    this._requestManager = web3._requestManager;
+var Shh = function (web4) {
+    this._requestManager = web4._requestManager;
 
     var self = this;
 
@@ -5839,27 +5839,27 @@ module.exports = Shh;
 
 },{"../filter":29,"../method":36,"./watches":43}],42:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file bzz.js
  * @author Alex Beregszaszi <alex@rtfs.hu>
  * @date 2016
  *
- * Reference: https://github.com/ethereum/go-ethereum/blob/swarm/internal/web3ext/web3ext.go#L33
+ * Reference: https://github.com/ethereum/go-ethereum/blob/swarm/internal/web4ext/web4ext.go#L33
  */
 
 "use strict";
@@ -5867,8 +5867,8 @@ module.exports = Shh;
 var Method = require('../method');
 var Property = require('../property');
 
-function Swarm(web3) {
-    this._requestManager = web3._requestManager;
+function Swarm(web4) {
+    this._requestManager = web4._requestManager;
 
     var self = this;
 
@@ -5986,20 +5986,20 @@ module.exports = Swarm;
 
 },{"../method":36,"../property":45}],43:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file watches.js
  * @authors:
@@ -6009,7 +6009,7 @@ module.exports = Swarm;
 
 var Method = require('../method');
 
-/// @returns an array of objects describing web3.eth.filter api methods
+/// @returns an array of objects describing web4.eth.filter api methods
 var eth = function () {
     var newFilterCall = function (args) {
         var type = args[0];
@@ -6060,7 +6060,7 @@ var eth = function () {
     ];
 };
 
-/// @returns an array of objects describing web3.shh.watch api methods
+/// @returns an array of objects describing web4.shh.watch api methods
 var shh = function () {
 
     return [
@@ -6095,20 +6095,20 @@ module.exports = {
 
 },{"../method":36}],44:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file namereg.js
@@ -6136,20 +6136,20 @@ module.exports = {
 
 },{"../contracts/GlobalRegistrar.json":1,"../contracts/ICAPRegistrar.json":2}],45:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
  * @file property.js
@@ -6282,20 +6282,20 @@ module.exports = Property;
 
 },{"../utils/utils":20}],46:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file requestmanager.js
@@ -6560,20 +6560,20 @@ module.exports = Settings;
 
 },{}],48:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** @file syncing.js
  * @authors:
@@ -6655,20 +6655,20 @@ module.exports = IsSyncing;
 
 },{"../utils/utils":20,"./formatters":30}],49:[function(require,module,exports){
 /*
-    This file is part of web3.js.
+    This file is part of web4.js.
 
-    web3.js is free software: you can redistribute it and/or modify
+    web4.js is free software: you can redistribute it and/or modify
     it under the terms of the GNU Lesser General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
-    web3.js is distributed in the hope that it will be useful,
+    web4.js is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
     GNU Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public License
-    along with web3.js.  If not, see <http://www.gnu.org/licenses/>.
+    along with web4.js.  If not, see <http://www.gnu.org/licenses/>.
 */
 /** 
  * @file transfer.js
@@ -16339,8 +16339,8 @@ module.exports = XMLHttpRequest;
     }
 })(this);
 
-},{}],"web3":[function(require,module,exports){
-var Web3 = require('./lib/web3');
+},{}],"web4":[function(require,module,exports){
+var Web3 = require('./lib/web4');
 
 // dont override global variable
 if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
@@ -16349,5 +16349,5 @@ if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
 
 module.exports = Web3;
 
-},{"./lib/web3":22}]},{},["web3"])
-//# sourceMappingURL=web3.js.map
+},{"./lib/web4":22}]},{},["web4"])
+//# sourceMappingURL=web4.js.map

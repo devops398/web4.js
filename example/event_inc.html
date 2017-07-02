@@ -1,12 +1,12 @@
 <!doctype>
 <html>
     <head>
-    <script type="text/javascript" src="../dist/web3.js"></script>
+    <script type="text/javascript" src="../dist/web4.js"></script>
     <script type="text/javascript">
 
-        var Web3 = require('web3');
-        var web3 = new Web3();
-        web3.setProvider(new web3.providers.HttpProvider('http://localhost:8545'));
+        var Web3 = require('web4');
+        var web4 = new Web3();
+        web4.setProvider(new web4.providers.HttpProvider('http://localhost:8545'));
 
         var source = "" +
         "contract Contract { " +
@@ -21,7 +21,7 @@
         "    uint x; " +
         "}";
 
-        var compiled = web3.eth.compile.solidity(source);
+        var compiled = web4.eth.compile.solidity(source);
         var code = compiled.Contract.code;
         var abi = compiled.Contract.info.abiDefinition;
 
@@ -35,12 +35,12 @@
     
         var createContract = function () {
             // let's assume that we have a private key to coinbase ;)
-            web3.eth.defaultAccount = web3.eth.coinbase;
+            web4.eth.defaultAccount = web4.eth.coinbase;
             
             document.getElementById('create').style.visibility = 'hidden';
             document.getElementById('status').innerText = "transaction sent, waiting for confirmation";
 
-            web3.eth.contract(abi).new({data: code}, function (err, c) {
+            web4.eth.contract(abi).new({data: code}, function (err, c) {
                 if (err) {
                     console.error(err);
                     return;

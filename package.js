@@ -1,6 +1,6 @@
 /* jshint ignore:start */
 Package.describe({
-  name: 'ethereum:web3',
+  name: 'ethereum:web4',
   version: '0.20.0',
   summary: 'Ethereum JavaScript API, middleware to talk to a ethreum node over RPC',
   git: 'https://github.com/ethereum/ethereum.js',
@@ -21,7 +21,7 @@ Package.onUse(function(api) {
 
   api.export(['Web3', 'BigNumber'], ['client', 'server']);
 
-  api.addFiles('dist/web3.js', ['client', 'server']);
+  api.addFiles('dist/web4.js', ['client', 'server']);
   api.addFiles('package-init.js', ['client', 'server']);
 });
 

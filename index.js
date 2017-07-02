@@ -1,4 +1,4 @@
-var Web3 = require('./lib/web3');
+var Web3 = require('./lib/web4');
 
 // dont override global variable
 if (typeof window !== 'undefined' && typeof window.Web3 === 'undefined') {
