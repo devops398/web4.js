@@ -1842,7 +1842,7 @@ module.exports = function (value, options) {
 };
 
 
-},{"crypto-js":58,"crypto-js/sha3":79}],20:[function(require,module,exports){
+},{"crypto-js":60,"crypto-js/sha3":81}],20:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -2473,7 +2473,7 @@ module.exports = {
     isTopic: isTopic,
 };
 
-},{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":84}],21:[function(require,module,exports){
+},{"./sha3.js":19,"bignumber.js":"bignumber.js","utf8":86}],21:[function(require,module,exports){
 module.exports={
     "version": "0.20.0"
 }
@@ -2509,6 +2509,7 @@ module.exports={
 var RequestManager = require('./web4/requestmanager');
 var Iban = require('./web4/iban');
 var Eth = require('./web4/methods/eth');
+var Qtum = require('./web4/methods/qtum');
 var DB = require('./web4/methods/db');
 var Shh = require('./web4/methods/shh');
 var Net = require('./web4/methods/net');
@@ -2531,6 +2532,7 @@ function Web3 (provider) {
     this._requestManager = new RequestManager(provider);
     this.currentProvider = provider;
     this.eth = new Eth(this);
+    this.qtum = new Qtum(this);
     this.db = new DB(this);
     this.shh = new Shh(this);
     this.net = new Net(this);
@@ -2632,7 +2634,7 @@ Web3.prototype.createBatch = function () {
 module.exports = Web3;
 
 
-},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web4/batch":24,"./web4/extend":28,"./web4/httpprovider":32,"./web4/iban":33,"./web4/ipcprovider":34,"./web4/methods/db":37,"./web4/methods/eth":38,"./web4/methods/net":39,"./web4/methods/personal":40,"./web4/methods/shh":41,"./web4/methods/swarm":42,"./web4/property":45,"./web4/requestmanager":46,"./web4/settings":47,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
+},{"./utils/sha3":19,"./utils/utils":20,"./version.json":21,"./web4/batch":24,"./web4/extend":28,"./web4/httpprovider":32,"./web4/iban":33,"./web4/ipcprovider":34,"./web4/methods/db":37,"./web4/methods/eth":38,"./web4/methods/net":39,"./web4/methods/personal":40,"./web4/methods/qtum":41,"./web4/methods/shh":42,"./web4/methods/swarm":43,"./web4/property":46,"./web4/requestmanager":47,"./web4/settings":48,"bignumber.js":"bignumber.js"}],23:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -2722,7 +2724,7 @@ AllSolidityEvents.prototype.attachToContract = function (contract) {
 module.exports = AllSolidityEvents;
 
 
-},{"../utils/sha3":19,"../utils/utils":20,"./event":27,"./filter":29,"./formatters":30,"./methods/watches":43}],24:[function(require,module,exports){
+},{"../utils/sha3":19,"../utils/utils":20,"./event":27,"./filter":29,"./formatters":30,"./methods/watches":44}],24:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -3357,7 +3359,7 @@ SolidityEvent.prototype.attachToContract = function (contract) {
 module.exports = SolidityEvent;
 
 
-},{"../solidity/coder":7,"../utils/sha3":19,"../utils/utils":20,"./filter":29,"./formatters":30,"./methods/watches":43}],28:[function(require,module,exports){
+},{"../solidity/coder":7,"../utils/sha3":19,"../utils/utils":20,"./filter":29,"./formatters":30,"./methods/watches":44}],28:[function(require,module,exports){
 var formatters = require('./formatters');
 var utils = require('./../utils/utils');
 var Method = require('./method');
@@ -3407,7 +3409,7 @@ var extend = function (web4) {
 module.exports = extend;
 
 
-},{"./../utils/utils":20,"./formatters":30,"./method":36,"./property":45}],29:[function(require,module,exports){
+},{"./../utils/utils":20,"./formatters":30,"./method":36,"./property":46}],29:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -4405,7 +4407,7 @@ HttpProvider.prototype.isConnected = function () {
 
 module.exports = HttpProvider;
 
-},{"./errors":26,"xhr2":85,"xmlhttprequest":17}],33:[function(require,module,exports){
+},{"./errors":26,"xhr2":87,"xmlhttprequest":17}],33:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -5520,7 +5522,7 @@ Eth.prototype.isSyncing = function (callback) {
 
 module.exports = Eth;
 
-},{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":44,"../property":45,"../syncing":48,"../transfer":49,"./watches":43}],39:[function(require,module,exports){
+},{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":45,"../property":46,"../syncing":49,"../transfer":50,"./watches":44}],39:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -5574,7 +5576,7 @@ var properties = function () {
 
 module.exports = Net;
 
-},{"../../utils/utils":20,"../property":45}],40:[function(require,module,exports){
+},{"../../utils/utils":20,"../property":46}],40:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -5691,7 +5693,340 @@ var properties = function () {
 
 module.exports = Personal;
 
-},{"../formatters":30,"../method":36,"../property":45}],41:[function(require,module,exports){
+},{"../formatters":30,"../method":36,"../property":46}],41:[function(require,module,exports){
+"use strict";
+
+var formatters = require('../formatters');
+var utils = require('../../utils/utils');
+var Method = require('../method');
+var Property = require('../property');
+var c = require('../../utils/config');
+var Contract = require('../contract');
+var watches = require('./watches');
+var Filter = require('../filter');
+var IsSyncing = require('../syncing');
+var namereg = require('../namereg');
+var Iban = require('../iban');
+var transfer = require('../transfer');
+
+var blockCall = function (args) {
+  return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? "qtum_getBlockByHash" : "qtum_getBlockByNumber";
+};
+
+var transactionFromBlockCall = function (args) {
+  return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'qtum_getTransactionByBlockHashAndIndex' : 'qtum_getTransactionByBlockNumberAndIndex';
+};
+
+var uncleCall = function (args) {
+  return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'qtum_getUncleByBlockHashAndIndex' : 'qtum_getUncleByBlockNumberAndIndex';
+};
+
+var getBlockTransactionCountCall = function (args) {
+  return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'qtum_getBlockTransactionCountByHash' : 'qtum_getBlockTransactionCountByNumber';
+};
+
+var uncleCountCall = function (args) {
+  return (utils.isString(args[0]) && args[0].indexOf('0x') === 0) ? 'qtum_getUncleCountByBlockHash' : 'qtum_getUncleCountByBlockNumber';
+};
+
+function Eth(web4) {
+  this._requestManager = web4._requestManager;
+
+  var self = this;
+
+  methods().forEach(function(method) {
+    method.attachToObject(self);
+    method.setRequestManager(self._requestManager);
+  });
+
+  properties().forEach(function(p) {
+    p.attachToObject(self);
+    p.setRequestManager(self._requestManager);
+  });
+
+
+  this.iban = Iban;
+  this.sendIBANTransaction = transfer.bind(null, this);
+}
+
+Object.defineProperty(Eth.prototype, 'defaultBlock', {
+  get: function () {
+    return c.defaultBlock;
+  },
+  set: function (val) {
+    c.defaultBlock = val;
+    return val;
+  }
+});
+
+Object.defineProperty(Eth.prototype, 'defaultAccount', {
+  get: function () {
+    return c.defaultAccount;
+  },
+  set: function (val) {
+    c.defaultAccount = val;
+    return val;
+  }
+});
+
+var methods = function () {
+  var getBalance = new Method({
+    name: 'getBalance',
+    call: 'qtum_getBalance',
+    params: 2,
+    inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultBlockNumberFormatter],
+    outputFormatter: formatters.outputBigNumberFormatter
+  });
+
+  var getStorageAt = new Method({
+    name: 'getStorageAt',
+    call: 'qtum_getStorageAt',
+    params: 3,
+    inputFormatter: [null, utils.toHex, formatters.inputDefaultBlockNumberFormatter]
+  });
+
+  var getCode = new Method({
+    name: 'getCode',
+    call: 'qtum_getCode',
+    params: 2,
+    inputFormatter: [formatters.inputAddressFormatter, formatters.inputDefaultBlockNumberFormatter]
+  });
+
+  var getBlock = new Method({
+    name: 'getBlock',
+    call: blockCall,
+    params: 2,
+    inputFormatter: [formatters.inputBlockNumberFormatter, function (val) { return !!val; }],
+    outputFormatter: formatters.outputBlockFormatter
+  });
+
+  var getUncle = new Method({
+    name: 'getUncle',
+    call: uncleCall,
+    params: 2,
+    inputFormatter: [formatters.inputBlockNumberFormatter, utils.toHex],
+    outputFormatter: formatters.outputBlockFormatter,
+
+  });
+
+  var getCompilers = new Method({
+    name: 'getCompilers',
+    call: 'qtum_getCompilers',
+    params: 0
+  });
+
+  var getBlockTransactionCount = new Method({
+    name: 'getBlockTransactionCount',
+    call: getBlockTransactionCountCall,
+    params: 1,
+    inputFormatter: [formatters.inputBlockNumberFormatter],
+    outputFormatter: utils.toDecimal
+  });
+
+  var getBlockUncleCount = new Method({
+    name: 'getBlockUncleCount',
+    call: uncleCountCall,
+    params: 1,
+    inputFormatter: [formatters.inputBlockNumberFormatter],
+    outputFormatter: utils.toDecimal
+  });
+
+  var getTransaction = new Method({
+    name: 'getTransaction',
+    call: 'qtum_getTransactionByHash',
+    params: 1,
+    outputFormatter: formatters.outputTransactionFormatter
+  });
+
+  var getTransactionFromBlock = new Method({
+    name: 'getTransactionFromBlock',
+    call: transactionFromBlockCall,
+    params: 2,
+    inputFormatter: [formatters.inputBlockNumberFormatter, utils.toHex],
+    outputFormatter: formatters.outputTransactionFormatter
+  });
+
+  var getTransactionReceipt = new Method({
+    name: 'getTransactionReceipt',
+    call: 'qtum_getTransactionReceipt',
+    params: 1,
+    outputFormatter: formatters.outputTransactionReceiptFormatter
+  });
+
+  var getTransactionCount = new Method({
+    name: 'getTransactionCount',
+    call: 'qtum_getTransactionCount',
+    params: 2,
+    inputFormatter: [null, formatters.inputDefaultBlockNumberFormatter],
+    outputFormatter: utils.toDecimal
+  });
+
+  var sendRawTransaction = new Method({
+    name: 'sendRawTransaction',
+    call: 'qtum_sendRawTransaction',
+    params: 1,
+    inputFormatter: [null]
+  });
+
+  var sendTransaction = new Method({
+    name: 'sendTransaction',
+    call: 'qtum_sendTransaction',
+    params: 1,
+    inputFormatter: [formatters.inputTransactionFormatter]
+  });
+
+  var signTransaction = new Method({
+    name: 'signTransaction',
+    call: 'qtum_signTransaction',
+    params: 1,
+    inputFormatter: [formatters.inputTransactionFormatter]
+  });
+
+  var sign = new Method({
+    name: 'sign',
+    call: 'qtum_sign',
+    params: 2,
+    inputFormatter: [formatters.inputAddressFormatter, null]
+  });
+
+  var call = new Method({
+    name: 'call',
+    call: 'qtum_call',
+    params: 2,
+    inputFormatter: [formatters.inputCallFormatter, formatters.inputDefaultBlockNumberFormatter]
+  });
+
+  var estimateGas = new Method({
+    name: 'estimateGas',
+    call: 'qtum_estimateGas',
+    params: 1,
+    inputFormatter: [formatters.inputCallFormatter],
+    outputFormatter: utils.toDecimal
+  });
+
+  var compileSolidity = new Method({
+    name: 'compile.solidity',
+    call: 'qtum_compileSolidity',
+    params: 1
+  });
+
+  var compileLLL = new Method({
+    name: 'compile.lll',
+    call: 'qtum_compileLLL',
+    params: 1
+  });
+
+  var compileSerpent = new Method({
+    name: 'compile.serpent',
+    call: 'qtum_compileSerpent',
+    params: 1
+  });
+
+  var submitWork = new Method({
+    name: 'submitWork',
+    call: 'qtum_submitWork',
+    params: 3
+  });
+
+  var getWork = new Method({
+    name: 'getWork',
+    call: 'qtum_getWork',
+    params: 0
+  });
+
+  return [
+    getBalance,
+    getStorageAt,
+    getCode,
+    getBlock,
+    getUncle,
+    getCompilers,
+    getBlockTransactionCount,
+    getBlockUncleCount,
+    getTransaction,
+    getTransactionFromBlock,
+    getTransactionReceipt,
+    getTransactionCount,
+    call,
+    estimateGas,
+    sendRawTransaction,
+    signTransaction,
+    sendTransaction,
+    sign,
+    compileSolidity,
+    compileLLL,
+    compileSerpent,
+    submitWork,
+    getWork
+  ];
+};
+
+
+var properties = function () {
+  return [
+    new Property({
+      name: 'coinbase',
+      getter: 'qtum_coinbase'
+    }),
+    new Property({
+      name: 'mining',
+      getter: 'qtum_mining'
+    }),
+    new Property({
+      name: 'hashrate',
+      getter: 'qtum_hashrate',
+      outputFormatter: utils.toDecimal
+    }),
+    new Property({
+      name: 'syncing',
+      getter: 'qtum_syncing',
+      outputFormatter: formatters.outputSyncingFormatter
+    }),
+    new Property({
+      name: 'gasPrice',
+      getter: 'qtum_gasPrice',
+      outputFormatter: formatters.outputBigNumberFormatter
+    }),
+    new Property({
+      name: 'accounts',
+      getter: 'qtum_accounts'
+    }),
+    new Property({
+      name: 'blockNumber',
+      getter: 'qtum_blockNumber',
+      outputFormatter: utils.toDecimal
+    }),
+    new Property({
+      name: 'protocolVersion',
+      getter: 'qtum_protocolVersion'
+    })
+  ];
+};
+
+Eth.prototype.contract = function (abi) {
+  var factory = new Contract(this, abi);
+  return factory;
+};
+
+Eth.prototype.filter = function (options, callback, filterCreationErrorCallback) {
+  return new Filter(options, 'qtum', this._requestManager, watches.qtum(), formatters.outputLogFormatter, callback, filterCreationErrorCallback);
+};
+
+Eth.prototype.namereg = function () {
+  return this.contract(namereg.global.abi).at(namereg.global.address);
+};
+
+Eth.prototype.icapNamereg = function () {
+  return this.contract(namereg.icap.abi).at(namereg.icap.address);
+};
+
+Eth.prototype.isSyncing = function (callback) {
+  return new IsSyncing(this._requestManager, callback);
+};
+
+module.exports = Eth;
+
+},{"../../utils/config":18,"../../utils/utils":20,"../contract":25,"../filter":29,"../formatters":30,"../iban":33,"../method":36,"../namereg":45,"../property":46,"../syncing":49,"../transfer":50,"./watches":44}],42:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -5837,7 +6172,7 @@ var methods = function () {
 module.exports = Shh;
 
 
-},{"../filter":29,"../method":36,"./watches":43}],42:[function(require,module,exports){
+},{"../filter":29,"../method":36,"./watches":44}],43:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -5984,7 +6319,7 @@ var properties = function () {
 
 module.exports = Swarm;
 
-},{"../method":36,"../property":45}],43:[function(require,module,exports){
+},{"../method":36,"../property":46}],44:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -6093,7 +6428,7 @@ module.exports = {
 };
 
 
-},{"../method":36}],44:[function(require,module,exports){
+},{"../method":36}],45:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -6134,7 +6469,7 @@ module.exports = {
 };
 
 
-},{"../contracts/GlobalRegistrar.json":1,"../contracts/ICAPRegistrar.json":2}],45:[function(require,module,exports){
+},{"../contracts/GlobalRegistrar.json":1,"../contracts/ICAPRegistrar.json":2}],46:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -6280,7 +6615,7 @@ Property.prototype.request = function () {
 module.exports = Property;
 
 
-},{"../utils/utils":20}],46:[function(require,module,exports){
+},{"../utils/utils":20}],47:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -6547,7 +6882,7 @@ RequestManager.prototype.poll = function () {
 module.exports = RequestManager;
 
 
-},{"../utils/config":18,"../utils/utils":20,"./errors":26,"./jsonrpc":35}],47:[function(require,module,exports){
+},{"../utils/config":18,"../utils/utils":20,"./errors":26,"./jsonrpc":35}],48:[function(require,module,exports){
 
 
 var Settings = function () {
@@ -6558,7 +6893,7 @@ var Settings = function () {
 module.exports = Settings;
 
 
-},{}],48:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -6653,7 +6988,7 @@ IsSyncing.prototype.stopWatching = function () {
 module.exports = IsSyncing;
 
 
-},{"../utils/utils":20,"./formatters":30}],49:[function(require,module,exports){
+},{"../utils/utils":20,"./formatters":30}],50:[function(require,module,exports){
 /*
     This file is part of web4.js.
 
@@ -6747,7 +7082,9 @@ var deposit = function (eth, from, to, value, client, callback) {
 module.exports = transfer;
 
 
-},{"../contracts/SmartExchange.json":3,"./iban":33}],50:[function(require,module,exports){
+},{"../contracts/SmartExchange.json":3,"./iban":33}],51:[function(require,module,exports){
+
+},{}],52:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -6980,7 +7317,7 @@ module.exports = transfer;
 	return CryptoJS.AES;
 
 }));
-},{"./cipher-core":51,"./core":52,"./enc-base64":53,"./evpkdf":55,"./md5":60}],51:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54,"./enc-base64":55,"./evpkdf":57,"./md5":62}],53:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -7856,7 +8193,7 @@ module.exports = transfer;
 
 
 }));
-},{"./core":52}],52:[function(require,module,exports){
+},{"./core":54}],54:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -8617,7 +8954,7 @@ module.exports = transfer;
 	return CryptoJS;
 
 }));
-},{}],53:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -8753,7 +9090,7 @@ module.exports = transfer;
 	return CryptoJS.enc.Base64;
 
 }));
-},{"./core":52}],54:[function(require,module,exports){
+},{"./core":54}],56:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -8903,7 +9240,7 @@ module.exports = transfer;
 	return CryptoJS.enc.Utf16;
 
 }));
-},{"./core":52}],55:[function(require,module,exports){
+},{"./core":54}],57:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9036,7 +9373,7 @@ module.exports = transfer;
 	return CryptoJS.EvpKDF;
 
 }));
-},{"./core":52,"./hmac":57,"./sha1":76}],56:[function(require,module,exports){
+},{"./core":54,"./hmac":59,"./sha1":78}],58:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9103,7 +9440,7 @@ module.exports = transfer;
 	return CryptoJS.format.Hex;
 
 }));
-},{"./cipher-core":51,"./core":52}],57:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],59:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9247,7 +9584,7 @@ module.exports = transfer;
 
 
 }));
-},{"./core":52}],58:[function(require,module,exports){
+},{"./core":54}],60:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9266,7 +9603,7 @@ module.exports = transfer;
 	return CryptoJS;
 
 }));
-},{"./aes":50,"./cipher-core":51,"./core":52,"./enc-base64":53,"./enc-utf16":54,"./evpkdf":55,"./format-hex":56,"./hmac":57,"./lib-typedarrays":59,"./md5":60,"./mode-cfb":61,"./mode-ctr":63,"./mode-ctr-gladman":62,"./mode-ecb":64,"./mode-ofb":65,"./pad-ansix923":66,"./pad-iso10126":67,"./pad-iso97971":68,"./pad-nopadding":69,"./pad-zeropadding":70,"./pbkdf2":71,"./rabbit":73,"./rabbit-legacy":72,"./rc4":74,"./ripemd160":75,"./sha1":76,"./sha224":77,"./sha256":78,"./sha3":79,"./sha384":80,"./sha512":81,"./tripledes":82,"./x64-core":83}],59:[function(require,module,exports){
+},{"./aes":52,"./cipher-core":53,"./core":54,"./enc-base64":55,"./enc-utf16":56,"./evpkdf":57,"./format-hex":58,"./hmac":59,"./lib-typedarrays":61,"./md5":62,"./mode-cfb":63,"./mode-ctr":65,"./mode-ctr-gladman":64,"./mode-ecb":66,"./mode-ofb":67,"./pad-ansix923":68,"./pad-iso10126":69,"./pad-iso97971":70,"./pad-nopadding":71,"./pad-zeropadding":72,"./pbkdf2":73,"./rabbit":75,"./rabbit-legacy":74,"./rc4":76,"./ripemd160":77,"./sha1":78,"./sha224":79,"./sha256":80,"./sha3":81,"./sha384":82,"./sha512":83,"./tripledes":84,"./x64-core":85}],61:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9343,7 +9680,7 @@ module.exports = transfer;
 	return CryptoJS.lib.WordArray;
 
 }));
-},{"./core":52}],60:[function(require,module,exports){
+},{"./core":54}],62:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9612,7 +9949,7 @@ module.exports = transfer;
 	return CryptoJS.MD5;
 
 }));
-},{"./core":52}],61:[function(require,module,exports){
+},{"./core":54}],63:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9691,7 +10028,7 @@ module.exports = transfer;
 	return CryptoJS.mode.CFB;
 
 }));
-},{"./cipher-core":51,"./core":52}],62:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],64:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9808,7 +10145,7 @@ module.exports = transfer;
 	return CryptoJS.mode.CTRGladman;
 
 }));
-},{"./cipher-core":51,"./core":52}],63:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],65:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9867,7 +10204,7 @@ module.exports = transfer;
 	return CryptoJS.mode.CTR;
 
 }));
-},{"./cipher-core":51,"./core":52}],64:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],66:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9908,7 +10245,7 @@ module.exports = transfer;
 	return CryptoJS.mode.ECB;
 
 }));
-},{"./cipher-core":51,"./core":52}],65:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],67:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -9963,7 +10300,7 @@ module.exports = transfer;
 	return CryptoJS.mode.OFB;
 
 }));
-},{"./cipher-core":51,"./core":52}],66:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],68:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10013,7 +10350,7 @@ module.exports = transfer;
 	return CryptoJS.pad.Ansix923;
 
 }));
-},{"./cipher-core":51,"./core":52}],67:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],69:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10058,7 +10395,7 @@ module.exports = transfer;
 	return CryptoJS.pad.Iso10126;
 
 }));
-},{"./cipher-core":51,"./core":52}],68:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],70:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10099,7 +10436,7 @@ module.exports = transfer;
 	return CryptoJS.pad.Iso97971;
 
 }));
-},{"./cipher-core":51,"./core":52}],69:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],71:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10130,7 +10467,7 @@ module.exports = transfer;
 	return CryptoJS.pad.NoPadding;
 
 }));
-},{"./cipher-core":51,"./core":52}],70:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],72:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10176,7 +10513,7 @@ module.exports = transfer;
 	return CryptoJS.pad.ZeroPadding;
 
 }));
-},{"./cipher-core":51,"./core":52}],71:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54}],73:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10322,7 +10659,7 @@ module.exports = transfer;
 	return CryptoJS.PBKDF2;
 
 }));
-},{"./core":52,"./hmac":57,"./sha1":76}],72:[function(require,module,exports){
+},{"./core":54,"./hmac":59,"./sha1":78}],74:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10513,7 +10850,7 @@ module.exports = transfer;
 	return CryptoJS.RabbitLegacy;
 
 }));
-},{"./cipher-core":51,"./core":52,"./enc-base64":53,"./evpkdf":55,"./md5":60}],73:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54,"./enc-base64":55,"./evpkdf":57,"./md5":62}],75:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10706,7 +11043,7 @@ module.exports = transfer;
 	return CryptoJS.Rabbit;
 
 }));
-},{"./cipher-core":51,"./core":52,"./enc-base64":53,"./evpkdf":55,"./md5":60}],74:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54,"./enc-base64":55,"./evpkdf":57,"./md5":62}],76:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -10846,7 +11183,7 @@ module.exports = transfer;
 	return CryptoJS.RC4;
 
 }));
-},{"./cipher-core":51,"./core":52,"./enc-base64":53,"./evpkdf":55,"./md5":60}],75:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54,"./enc-base64":55,"./evpkdf":57,"./md5":62}],77:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -11114,7 +11451,7 @@ module.exports = transfer;
 	return CryptoJS.RIPEMD160;
 
 }));
-},{"./core":52}],76:[function(require,module,exports){
+},{"./core":54}],78:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -11265,7 +11602,7 @@ module.exports = transfer;
 	return CryptoJS.SHA1;
 
 }));
-},{"./core":52}],77:[function(require,module,exports){
+},{"./core":54}],79:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -11346,7 +11683,7 @@ module.exports = transfer;
 	return CryptoJS.SHA224;
 
 }));
-},{"./core":52,"./sha256":78}],78:[function(require,module,exports){
+},{"./core":54,"./sha256":80}],80:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -11546,7 +11883,7 @@ module.exports = transfer;
 	return CryptoJS.SHA256;
 
 }));
-},{"./core":52}],79:[function(require,module,exports){
+},{"./core":54}],81:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -11870,7 +12207,7 @@ module.exports = transfer;
 	return CryptoJS.SHA3;
 
 }));
-},{"./core":52,"./x64-core":83}],80:[function(require,module,exports){
+},{"./core":54,"./x64-core":85}],82:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -11954,7 +12291,7 @@ module.exports = transfer;
 	return CryptoJS.SHA384;
 
 }));
-},{"./core":52,"./sha512":81,"./x64-core":83}],81:[function(require,module,exports){
+},{"./core":54,"./sha512":83,"./x64-core":85}],83:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -12278,7 +12615,7 @@ module.exports = transfer;
 	return CryptoJS.SHA512;
 
 }));
-},{"./core":52,"./x64-core":83}],82:[function(require,module,exports){
+},{"./core":54,"./x64-core":85}],84:[function(require,module,exports){
 ;(function (root, factory, undef) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -13049,7 +13386,7 @@ module.exports = transfer;
 	return CryptoJS.TripleDES;
 
 }));
-},{"./cipher-core":51,"./core":52,"./enc-base64":53,"./evpkdf":55,"./md5":60}],83:[function(require,module,exports){
+},{"./cipher-core":53,"./core":54,"./enc-base64":55,"./evpkdf":57,"./md5":62}],85:[function(require,module,exports){
 ;(function (root, factory) {
 	if (typeof exports === "object") {
 		// CommonJS
@@ -13354,7 +13691,7 @@ module.exports = transfer;
 	return CryptoJS;
 
 }));
-},{"./core":52}],84:[function(require,module,exports){
+},{"./core":54}],86:[function(require,module,exports){
 /*! https://mths.be/utf8js v2.1.2 by @mathias */
 ;(function(root) {
 
@@ -13600,25 +13937,25 @@ module.exports = transfer;
 
 }(this));
 
-},{}],85:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 module.exports = XMLHttpRequest;
 
 },{}],"bignumber.js":[function(require,module,exports){
-/*! bignumber.js v4.0.2 https://github.com/MikeMcl/bignumber.js/LICENCE */
+/*! bignumber.js v2.0.7 https://github.com/MikeMcl/bignumber.js/LICENCE */
 
-;(function (globalObj) {
+;(function (global) {
     'use strict';
 
     /*
-      bignumber.js v4.0.2
+      bignumber.js v2.0.7
       A JavaScript library for arbitrary-precision arithmetic.
       https://github.com/MikeMcl/bignumber.js
-      Copyright (c) 2017 Michael Mclaughlin <M8ch88l@gmail.com>
+      Copyright (c) 2015 Michael Mclaughlin <M8ch88l@gmail.com>
       MIT Expat Licence
     */
 
 
-    var BigNumber,
+    var BigNumber, crypto, parseNumeric,
         isNumeric = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i,
         mathceil = Math.ceil,
         mathfloor = Math.floor,
@@ -13644,8 +13981,8 @@ module.exports = XMLHttpRequest;
     /*
      * Create and return a BigNumber constructor.
      */
-    function constructorFactory(config) {
-        var div, parseNumeric,
+    function another(configObj) {
+        var div,
 
             // id tracks the caller function, so its name can be included in error messages.
             id = 0,
@@ -13731,7 +14068,7 @@ module.exports = XMLHttpRequest;
 
             // The maximum number of significant digits of the result of the toPower operation.
             // If POW_PRECISION is 0, there will be unlimited significant digits.
-            POW_PRECISION = 0,                       // 0 to MAX
+            POW_PRECISION = 100,                     // 0 to MAX
 
             // The format specification used by the BigNumber.prototype.toFormat method.
             FORMAT = {
@@ -13864,9 +14201,7 @@ module.exports = XMLHttpRequest;
 
                 // Disallow numbers with over 15 significant digits if number type.
                 // 'new BigNumber() number type has more than 15 significant digits: {n}'
-                if ( num && ERRORS && len > 15 && ( n > MAX_SAFE_INTEGER || n !== mathfloor(n) ) ) {
-                    raise( id, tooManyDigits, x.s * n );
-                }
+                if ( num && ERRORS && len > 15 ) raise( id, tooManyDigits, x.s * n );
 
                 e = e - i - 1;
 
@@ -13921,7 +14256,7 @@ module.exports = XMLHttpRequest;
         // CONSTRUCTOR PROPERTIES
 
 
-        BigNumber.another = constructorFactory;
+        BigNumber.another = another;
 
         BigNumber.ROUND_UP = 0;
         BigNumber.ROUND_DOWN = 1;
@@ -13968,7 +14303,7 @@ module.exports = XMLHttpRequest;
          * Ignore properties/parameters set to null or undefined.
          * Return an object with the properties current values.
          */
-        BigNumber.config = BigNumber.set = function () {
+        BigNumber.config = function () {
             var v, p,
                 i = 0,
                 r = {},
@@ -14048,19 +14383,9 @@ module.exports = XMLHttpRequest;
             // 'config() crypto unavailable: {crypto}'
             if ( has( p = 'CRYPTO' ) ) {
 
-                if ( v === true || v === false || v === 1 || v === 0 ) {
-                    if (v) {
-                        v = typeof crypto == 'undefined';
-                        if ( !v && crypto && (crypto.getRandomValues || crypto.randomBytes)) {
-                            CRYPTO = true;
-                        } else if (ERRORS) {
-                            raise( 2, 'crypto unavailable', v ? void 0 : crypto );
-                        } else {
-                            CRYPTO = false;
-                        }
-                    } else {
-                        CRYPTO = false;
-                    }
+                if ( v === !!v || v === 1 || v === 0 ) {
+                    CRYPTO = !!( v && crypto && typeof crypto == 'object' );
+                    if ( v && !CRYPTO && ERRORS ) raise( 2, 'crypto unavailable', crypto );
                 } else if (ERRORS) {
                     raise( 2, p + notBool, v );
                 }
@@ -14150,7 +14475,7 @@ module.exports = XMLHttpRequest;
                 if (CRYPTO) {
 
                     // Browsers supporting crypto.getRandomValues.
-                    if (crypto.getRandomValues) {
+                    if ( crypto && crypto.getRandomValues ) {
 
                         a = crypto.getRandomValues( new Uint32Array( k *= 2 ) );
 
@@ -14183,7 +14508,7 @@ module.exports = XMLHttpRequest;
                         i = k / 2;
 
                     // Node.js supporting crypto.randomBytes.
-                    } else if (crypto.randomBytes) {
+                    } else if ( crypto && crypto.randomBytes ) {
 
                         // buffer
                         a = crypto.randomBytes( k *= 7 );
@@ -14208,14 +14533,13 @@ module.exports = XMLHttpRequest;
                             }
                         }
                         i = k / 7;
-                    } else {
-                        CRYPTO = false;
-                        if (ERRORS) raise( 14, 'crypto unavailable', crypto );
+                    } else if (ERRORS) {
+                        raise( 14, 'crypto unavailable', crypto );
                     }
                 }
 
-                // Use Math.random.
-                if (!CRYPTO) {
+                // Use Math.random: CRYPTO is false or crypto is unavailable and ERRORS is false.
+                if (!i) {
 
                     for ( ; i < k; ) {
                         v = random53bitInt();
@@ -14241,7 +14565,7 @@ module.exports = XMLHttpRequest;
                 } else {
 
                     // Remove leading elements which are zero and adjust exponent accordingly.
-                    for ( e = -1 ; c[0] === 0; c.splice(0, 1), e -= LOG_BASE);
+                    for ( e = -1 ; c[0] === 0; c.shift(), e -= LOG_BASE);
 
                     // Count the digits of the first element of c to determine leading zeros, and...
                     for ( i = 1, v = c[0]; v >= 10; v /= 10, i++);
@@ -14334,7 +14658,7 @@ module.exports = XMLHttpRequest;
 
                         if ( !d ) {
                             ++e;
-                            xc = [1].concat(xc);
+                            xc.unshift(1);
                         }
                     }
                 }
@@ -14372,7 +14696,7 @@ module.exports = XMLHttpRequest;
                     x[i] = temp % base;
                 }
 
-                if (carry) x = [carry].concat(x);
+                if (carry) x.unshift(carry);
 
                 return x;
             }
@@ -14406,7 +14730,7 @@ module.exports = XMLHttpRequest;
                 }
 
                 // Remove leading zeros.
-                for ( ; !a[0] && a.length > 1; a.splice(0, 1) );
+                for ( ; !a[0] && a.length > 1; a.shift() );
             }
 
             // x: dividend, y: divisor.
@@ -14475,7 +14799,7 @@ module.exports = XMLHttpRequest;
                     // Add zeros to make remainder as long as divisor.
                     for ( ; remL < yL; rem[remL++] = 0 );
                     yz = yc.slice();
-                    yz = [0].concat(yz);
+                    yz.unshift(0);
                     yc0 = yc[0];
                     if ( yc[1] >= base / 2 ) yc0++;
                     // Not necessary, but to prevent trial digit n > base, when using base 3.
@@ -14546,7 +14870,7 @@ module.exports = XMLHttpRequest;
                                 prodL = prod.length;
                             }
 
-                            if ( prodL < remL ) prod = [0].concat(prod);
+                            if ( prodL < remL ) prod.unshift(0);
 
                             // Subtract product from remainder.
                             subtract( rem, prod, remL, base );
@@ -14587,7 +14911,7 @@ module.exports = XMLHttpRequest;
                     more = rem[0] != null;
 
                     // Leading zero?
-                    if ( !qc[0] ) qc.splice(0, 1);
+                    if ( !qc[0] ) qc.shift();
                 }
 
                 if ( base == BASE ) {
@@ -14747,11 +15071,11 @@ module.exports = XMLHttpRequest;
 
         // Handle values that fail the validity test in BigNumber.
         parseNumeric = (function () {
-            var basePrefix = /^(-?)0([xbo])(?=\w[\w.]*$)/i,
+            var basePrefix = /^(-?)0([xbo])/i,
                 dotAfter = /^([^.]+)\.$/,
                 dotBefore = /^\.([^.]+)$/,
                 isInfinityOrNaN = /^-?(Infinity|NaN)$/,
-                whitespaceOrPlus = /^\s*\+(?=[\w.])|^\s+|\s+$/g;
+                whitespaceOrPlus = /^\s*\+|^\s+|\s+$/g;
 
             return function ( x, str, num, b ) {
                 var base,
@@ -14919,7 +15243,7 @@ module.exports = XMLHttpRequest;
                             sd -= x.e + 1;
 
                             // 1, 0.1, 0.01, 0.001, 0.0001 etc.
-                            xc[0] = pows10[ ( LOG_BASE - sd % LOG_BASE ) % LOG_BASE ];
+                            xc[0] = pows10[ sd % LOG_BASE ];
                             x.e = -sd || 0;
                         } else {
 
@@ -15297,7 +15621,7 @@ module.exports = XMLHttpRequest;
             }
 
             // Remove leading zeros and adjust exponent accordingly.
-            for ( ; xc[0] == 0; xc.splice(0, 1), --ye );
+            for ( ; xc[0] == 0; xc.shift(), --ye );
 
             // Zero?
             if ( !xc[0] ) {
@@ -15461,11 +15785,11 @@ module.exports = XMLHttpRequest;
             // Only start adding at yc.length - 1 as the further digits of xc can be ignored.
             for ( a = 0; b; ) {
                 a = ( xc[--b] = xc[b] + yc[b] + a ) / BASE | 0;
-                xc[b] = BASE === xc[b] ? 0 : xc[b] % BASE;
+                xc[b] %= BASE;
             }
 
             if (a) {
-                xc = [a].concat(xc);
+                xc.unshift(a);
                 ++ye;
             }
 
@@ -15754,7 +16078,7 @@ module.exports = XMLHttpRequest;
             if (c) {
                 ++e;
             } else {
-                zc.splice(0, 1);
+                zc.shift();
             }
 
             return normalise( y, zc, e );
@@ -15972,91 +16296,59 @@ module.exports = XMLHttpRequest;
          * Return the value of this BigNumber converted to a number primitive.
          */
         P.toNumber = function () {
-            return +this;
+            var x = this;
+
+            // Ensure zero has correct sign.
+            return +x || ( x.s ? x.s * 0 : NaN );
         };
 
 
         /*
          * Return a BigNumber whose value is the value of this BigNumber raised to the power n.
-         * If m is present, return the result modulo m.
          * If n is negative round according to DECIMAL_PLACES and ROUNDING_MODE.
-         * If POW_PRECISION is non-zero and m is not present, round to POW_PRECISION using
-         * ROUNDING_MODE.
+         * If POW_PRECISION is not 0, round to POW_PRECISION using ROUNDING_MODE.
          *
-         * The modular power operation works efficiently when x, n, and m are positive integers,
-         * otherwise it is equivalent to calculating x.toPower(n).modulo(m) (with POW_PRECISION 0).
-         *
-         * n {number} Integer, -MAX_SAFE_INTEGER to MAX_SAFE_INTEGER inclusive.
-         * [m] {number|string|BigNumber} The modulus.
+         * n {number} Integer, -9007199254740992 to 9007199254740992 inclusive.
+         * (Performs 54 loop iterations for n of 9007199254740992.)
          *
          * 'pow() exponent not an integer: {n}'
          * 'pow() exponent out of range: {n}'
-         *
-         * Performs 54 loop iterations for n of 9007199254740991.
          */
-        P.toPower = P.pow = function ( n, m ) {
-            var k, y, z,
+        P.toPower = P.pow = function (n) {
+            var k, y,
                 i = mathfloor( n < 0 ? -n : +n ),
                 x = this;
-
-            if ( m != null ) {
-                id = 23;
-                m = new BigNumber(m);
-            }
 
             // Pass ±Infinity to Math.pow if exponent is out of range.
             if ( !isValidInt( n, -MAX_SAFE_INTEGER, MAX_SAFE_INTEGER, 23, 'exponent' ) &&
               ( !isFinite(n) || i > MAX_SAFE_INTEGER && ( n /= 0 ) ||
-                parseFloat(n) != n && !( n = NaN ) ) || n == 0 ) {
-                k = Math.pow( +x, n );
-                return new BigNumber( m ? k % m : k );
+                parseFloat(n) != n && !( n = NaN ) ) ) {
+                return new BigNumber( Math.pow( +x, n ) );
             }
 
-            if (m) {
-                if ( n > 1 && x.gt(ONE) && x.isInt() && m.gt(ONE) && m.isInt() ) {
-                    x = x.mod(m);
-                } else {
-                    z = m;
-
-                    // Nullify m so only a single mod operation is performed at the end.
-                    m = null;
-                }
-            } else if (POW_PRECISION) {
-
-                // Truncating each coefficient array to a length of k after each multiplication
-                // equates to truncating significant digits to POW_PRECISION + [28, 41],
-                // i.e. there will be a minimum of 28 guard digits retained.
-                // (Using + 1.5 would give [9, 21] guard digits.)
-                k = mathceil( POW_PRECISION / LOG_BASE + 2 );
-            }
-
+            // Truncating each coefficient array to a length of k after each multiplication equates
+            // to truncating significant digits to POW_PRECISION + [28, 41], i.e. there will be a
+            // minimum of 28 guard digits retained. (Using + 1.5 would give [9, 21] guard digits.)
+            k = POW_PRECISION ? mathceil( POW_PRECISION / LOG_BASE + 2 ) : 0;
             y = new BigNumber(ONE);
 
             for ( ; ; ) {
+
                 if ( i % 2 ) {
                     y = y.times(x);
                     if ( !y.c ) break;
-                    if (k) {
-                        if ( y.c.length > k ) y.c.length = k;
-                    } else if (m) {
-                        y = y.mod(m);
-                    }
+                    if ( k && y.c.length > k ) y.c.length = k;
                 }
 
                 i = mathfloor( i / 2 );
                 if ( !i ) break;
+
                 x = x.times(x);
-                if (k) {
-                    if ( x.c && x.c.length > k ) x.c.length = k;
-                } else if (m) {
-                    x = x.mod(m);
-                }
+                if ( k && x.c && x.c.length > k ) x.c.length = k;
             }
 
-            if (m) return y;
             if ( n < 0 ) y = ONE.div(y);
-
-            return z ? y.mod(z) : k ? round( y, POW_PRECISION, ROUNDING_MODE ) : y;
+            return k ? round( y, POW_PRECISION, ROUNDING_MODE ) : y;
         };
 
 
@@ -16134,30 +16426,26 @@ module.exports = XMLHttpRequest;
         };
 
 
+
         /*
-         * Return as toString, but do not accept a base argument, and include the minus sign for
-         * negative zero.
+         * Return as toString, but do not accept a base argument.
          */
         P.valueOf = P.toJSON = function () {
-            var str,
-                n = this,
-                e = n.e;
-
-            if ( e === null ) return n.toString();
-
-            str = coeffToString( n.c );
-
-            str = e <= TO_EXP_NEG || e >= TO_EXP_POS
-                ? toExponential( str, e )
-                : toFixedPoint( str, e );
-
-            return n.s < 0 ? '-' + str : str;
+            return this.toString();
         };
 
 
-        P.isBigNumber = true;
+        // Aliases for BigDecimal methods.
+        //P.add = P.plus;         // P.add included above
+        //P.subtract = P.minus;   // P.sub included above
+        //P.multiply = P.times;   // P.mul included above
+        //P.divide = P.div;
+        //P.remainder = P.mod;
+        //P.compareTo = P.cmp;
+        //P.negate = P.neg;
 
-        if ( config != null ) BigNumber.config(config);
+
+        if ( configObj != null ) BigNumber.config(configObj);
 
         return BigNumber;
     }
@@ -16320,26 +16608,24 @@ module.exports = XMLHttpRequest;
     // EXPORT
 
 
-    BigNumber = constructorFactory();
-    BigNumber['default'] = BigNumber.BigNumber = BigNumber;
-
+    BigNumber = another();
 
     // AMD.
     if ( typeof define == 'function' && define.amd ) {
         define( function () { return BigNumber; } );
 
-    // Node.js and other environments that support module.exports.
+    // Node and other environments that support module.exports.
     } else if ( typeof module != 'undefined' && module.exports ) {
         module.exports = BigNumber;
+        if ( !crypto ) try { crypto = require('crypto'); } catch (e) {}
 
     // Browser.
     } else {
-        if ( !globalObj ) globalObj = typeof self != 'undefined' ? self : Function('return this')();
-        globalObj.BigNumber = BigNumber;
+        global.BigNumber = BigNumber;
     }
 })(this);
 
-},{}],"web4":[function(require,module,exports){
+},{"crypto":51}],"web4":[function(require,module,exports){
 var Web3 = require('./lib/web4');
 
 // dont override global variable
